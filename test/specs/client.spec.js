@@ -8,11 +8,11 @@ describe("Add client", () => {
 
     xit("Add client", async () => {
         await clientPage.openForm()
-        await clientPage.setSurname("Rainbekov")
-        await clientPage.setName("Zala")
-        await clientPage.setMiddleName("Belekovich")
-        await clientPage.setEmail("odysomebodysomebody@gmail.com")
-        await clientPage.setPhone("996098678040")
+        await clientPage.setSurname("LastOF ")
+        await clientPage.setName("Test")
+        await clientPage.setMiddleName("Testovich")
+        await clientPage.setEmail("sysomebodysomebody@gmail.com")
+        await clientPage.setPhone("996786780301")
         await browser.pause(2000)
         await clientPage.setProfession()
         await clientPage.setGender()
@@ -25,6 +25,7 @@ describe("Add client", () => {
     })
 
     it("Edit Client", async () => {
+        await browser.pause(2000)
         await clientPage.openDetailedView()
         await browser.pause(2000)
         await clientPage.editPhysicalCard(93900393);
@@ -32,14 +33,17 @@ describe("Add client", () => {
         await clientPage.dialogSave(true);
         await browser.pause(2000)
         await clientPage.editDiscountCard(93900393)
-        await browser.pause(2000)
+        await browser.pause(4000)
         await clientPage.dialogSave(true)
         await clientPage.editName("NewName")
-        await clientPage.editSurname("NewSurname");
-        await clientPage.editPatronymic("New Patronymic")
-        await clientPage.editBirthday("01.01.2001")
         await browser.pause(2000)
-        await clientPage.editContacts("996120978122", "updated@gmail.com")
+        await clientPage.editSurname("NewSurname");
+        await browser.pause(2000)
+        await clientPage.editPatronymic("New Patronymic")
+        await browser.pause(2000)
+        await clientPage.editBirthday("01.01.2002")
+        await browser.pause(2000)
+        await clientPage.editContacts("996567894122", "newGmaIl@gmail.com")
         await browser.pause(3000)
         await clientPage.dialogSave(true)
         await browser.pause(2000)
@@ -50,14 +54,9 @@ describe("Add client", () => {
         await browser.pause(5000)
     })
     xit("Drop filter", async () => {
-       /* // await clientPage.chooseChildren()
         await clientPage.pressSearchFilter()
-        await browser.pause(2000)
-        await clientPage.chooseJobFilter()
         await browser.pause(3000)
-        await clientPage.blackListFieldClick()
+        await clientPage.deleteFilter()
         await browser.pause(3000)
-        await clientPage.clickOnTotalCheck()
-        await browser.pause(3000)*/
     })
 })

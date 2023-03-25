@@ -7,14 +7,21 @@ class ClientPage {
     get userNameField() {
         return $('input[formcontrolname="userName"]');
     }
-    get userMiddleName(){
+
+    get userMiddleName() {
         return $('[formcontrolname="userMiddleName"]')
     }
-    get profession(){return $('[class="mat-select-arrow"]')}
-    get professionOption(){return $(`[id="mat-option-6"]`)}
+
+    get profession() {
+        return $('[class="mat-select-arrow"]')
+    }
+
+    get professionOption() {
+        return $(`[id="mat-option-6"]`)
+    }
 
     get genderField() {
-            return $('mat-radio-group mat-radio-button:nth-child(1) div[class="mat-radio-label-content"]');
+        return $('mat-radio-group mat-radio-button:nth-child(1) div[class="mat-radio-label-content"]');
     }
 
     get emailField() {
@@ -79,9 +86,6 @@ class ClientPage {
         return $('.client-data:nth-child(3) span[class="editIcon"]')
     }
 
-    get matDialog() {
-        return $('[class="ng-star-inserted"]')
-    };
 
     get cardNo() {
         return $('[formcontrolname="cardNo"]')
@@ -108,12 +112,14 @@ class ClientPage {
     }
 
     get dropFilterButton() {
-        return $('[]')
+        return $('.actions button:nth-child(3)')
     }
 
     // get selectors for filter functionalities
 
-    get searchField(){ return $('[id="mat-input-0"]')}
+    get searchField() {
+        return $('[id="mat-input-0"]')
+    }
 
     async openForm() {
         await $('button.clients-add-user-dialog').click();
@@ -127,14 +133,16 @@ class ClientPage {
     async setName(name) {
         await this.userNameField.setValue(name);
     }
-    async setMiddleName(middleName){
+
+    async setMiddleName(middleName) {
         await this.userMiddleName.setValue(middleName)
     }
 
     async setGender() {
         await this.genderField.click();
     }
-    async setProfession(){
+
+    async setProfession() {
         await this.profession.click()
         await this.professionOption.click()
     }
@@ -228,23 +236,24 @@ class ClientPage {
         await this.optionsForReview.click()
     }
 
-    async chooseChildren(){
-        await this.searchField.click()
-        await browser.pause(2000)
-        await this.childOption.click()
-        await browser.pause(5000)
+    async deleteFilter() {
+        await this.dropFilterButton.click();
     }
-    async pressSearchFilter(){
+
+    async pressSearchFilter() {
         await this.searchField.click()
     }
+
     async chooseJobFilter() {
         await this.jobFieldFilter.click()
         await this.jobOptionFilter.click();
     }
-    async clickOnTotalCheck(){
+
+    async clickOnTotalCheck() {
         await this.totalCheck.click()
     }
-    async blackListFieldClick(){
+
+    async blackListFieldClick() {
         await this.blackListField.click()
         await this.blackListOption.click()
     }
