@@ -1,6 +1,5 @@
 class ClientPage {
 
-
     get userSurNameField() {
         return $('input[formcontrolname="userSurname"]');
     }
@@ -8,9 +7,14 @@ class ClientPage {
     get userNameField() {
         return $('input[formcontrolname="userName"]');
     }
+    get userMiddleName(){
+        return $('[formcontrolname="userMiddleName"]')
+    }
+    get profession(){return $('[class="mat-select-arrow"]')}
+    get professionOption(){return $(`[id="mat-option-6"]`)}
 
     get genderField() {
-        return $('mat-radio-group mat-radio-button:nth-child(1) div[class="mat-radio-label-content"]');
+            return $('mat-radio-group mat-radio-button:nth-child(1) div[class="mat-radio-label-content"]');
     }
 
     get emailField() {
@@ -24,6 +28,7 @@ class ClientPage {
     get birthdayField() {
         return $('input[formcontrolname="birthday"]');
     }
+
 
     get saveButton() {
         return $('button[name="save"]');
@@ -58,45 +63,60 @@ class ClientPage {
         return $('[id="mat-input-2"]')
     };
 
+    get changeUserPatronymic() {
+        return $('[id="mat-input-3"]')
+    }
+
+    get changeBirthdayField() {
+        return $('[id="mat-input-4"]')
+    }
+
     get physicalCardField() {
         return $('.client-data:nth-child(2) span[class="editIcon"]')
     };
-    get discountCardField(){
+
+    get discountCardField() {
         return $('.client-data:nth-child(3) span[class="editIcon"]')
     }
 
     get matDialog() {
         return $('[class="ng-star-inserted"]')
     };
+
     get cardNo() {
         return $('[formcontrolname="cardNo"]')
     };
-    get cardNo2(){
-        return $('[id="mat-input-6"]')
-    }
-    get calendarIcon(){
-        return $('[class="mat-icon-button"]')
-    }
-    get datePicker(){
-        return $('[class="cdk-overlay-pane mat-datepicker-popup"]')
-    }
-    get contactIcon(){
-        return $('div[class="col-item tel"] span[class="editIcon"]')
-    }
-    get selectJobIcon(){
-        return $('[class="mat-select-arrow"]')
-    }
-    get selectJob(){
-        return $('[id="mat-option-8"]')
-    }
-    get optionsForReview(){
-        return $ ('[formcontrolname="doNotWriteForReviews"]')
+
+    get cardNo2() {
+        return $('[formcontrolname="cardNo"]')
     }
 
+    get contactIcon() {
+        return $('div[class="col-item tel"] span[class="editIcon"]')
+    }
+
+    get selectJobIcon() {
+        return $('[class="mat-select-arrow"]')
+    }
+
+    get selectJob() {
+        return $(`[id="mat-option-15"]`)
+    }
+
+    get optionsForReview() {
+        return $('[formcontrolname="doNotWriteForReviews"]')
+    }
+
+    get dropFilterButton() {
+        return $('[]')
+    }
+
+    // get selectors for filter functionalities
+
+    get searchField(){ return $('[id="mat-input-0"]')}
 
     async openForm() {
         await $('button.clients-add-user-dialog').click();
-        await browser.pause(5000);
         await expect(this.userForm).toExist();
     }
 
@@ -107,9 +127,16 @@ class ClientPage {
     async setName(name) {
         await this.userNameField.setValue(name);
     }
+    async setMiddleName(middleName){
+        await this.userMiddleName.setValue(middleName)
+    }
 
     async setGender() {
         await this.genderField.click();
+    }
+    async setProfession(){
+        await this.profession.click()
+        await this.professionOption.click()
     }
 
     async setEmail(email) {
@@ -130,29 +157,38 @@ class ClientPage {
 
     async openDetailedView() {
         await this.firstItem.click()
-        await browser.pause(5000)
         await expect(this.detailedViewForm.toExist());
 
     }
 
     async editName(newName) {
-        if(await this.changeUserName.getValue() != null){
+        if (await this.changeUserName.getValue() != null) {
             await this.changeUserName.clearValue()
             await this.changeUserName.setValue(newName)
-        }
-        else{
+        } else {
             await this.changeUserName.setValue(newName)
         }
 
 
     }
 
+    async editPatronymic(newPatronymic) {
+        await this.changeUserPatronymic.setValue(newPatronymic)
+    }
+
+    async editBirthday(newBirthday) {
+        await this.changeBirthdayField.setValue(newBirthday)
+    }
+
+
     async editSurname(newSurname) {
-        if(await this.changeUserSurname.getValue() != null){
+        if (await this.changeUserSurname.getValue() != null) {
             await this.changeUserSurname.clearValue()
             await this.changeUserSurname.setValue(newSurname)
 
-        }else {await this.changeUserSurname.setValue(newSurname) }
+        } else {
+            await this.changeUserSurname.setValue(newSurname)
+        }
 
     }
 
@@ -161,10 +197,10 @@ class ClientPage {
         await this.cardNo.setValue(number)
 
     }
-    async editDiscountCard(number){
+
+    async editDiscountCard(number) {
         await this.discountCardField.click();
         await this.cardNo2.setValue(number)
-        await browser.pause(2000)
 
     }
 
@@ -176,27 +212,42 @@ class ClientPage {
         }
 
     }
-    async openCalendar(date){
-        await this.calendarIcon.click()
-        expect(this.datePicker.toExist())
-        await this.datePicker.setValue(date)
-        await browser.pause(2000)
-    }
-    async editContacts(newContact, newEmail){
+
+    async editContacts(newContact, newEmail) {
         await this.contactIcon.click();
         await this.phoneField.setValue(newContact);
         await this.emailField.setValue(newEmail)
-
-        await browser.pause(3000)
     }
-    async chooseJob(){
+
+    async chooseJob() {
         await this.selectJobIcon.click();
         await this.selectJob.click();
     }
-    async reviewOptions(){
+
+    async reviewOptions() {
         await this.optionsForReview.click()
     }
 
+    async chooseChildren(){
+        await this.searchField.click()
+        await browser.pause(2000)
+        await this.childOption.click()
+        await browser.pause(5000)
+    }
+    async pressSearchFilter(){
+        await this.searchField.click()
+    }
+    async chooseJobFilter() {
+        await this.jobFieldFilter.click()
+        await this.jobOptionFilter.click();
+    }
+    async clickOnTotalCheck(){
+        await this.totalCheck.click()
+    }
+    async blackListFieldClick(){
+        await this.blackListField.click()
+        await this.blackListOption.click()
+    }
 
 
 }
