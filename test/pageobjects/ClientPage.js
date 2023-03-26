@@ -111,11 +111,33 @@ class ClientPage {
         return $('[formcontrolname="doNotWriteForReviews"]')
     }
 
+
+
+    // get selectors for filter functionalities
     get dropFilterButton() {
         return $('.actions button:nth-child(3)')
     }
+    get saveFilterTemplate() {
+        return $('.actions button:nth-child(2)')
+    }
+    get moreInfoFilter(){
+        return $('div.header-category ul li:nth-child(3)')
+    }
 
-    // get selectors for filter functionalities
+    get saveInsertedTemplateButton(){
+        return $('[class="bold mat-button"]')
+    }
+
+    get filterTemplateField(){
+        return $('[id="mat-input-1"]')
+    }
+
+    get deleteTemplateIcon(){
+        return $('mat-icon.material-icons:nth-child(2)')
+    }
+    get yesToDeleteTemplate(){
+        return $(`[class="mat-button modal-btn-ok"]`)
+    }
 
     get searchField() {
         return $('[id="mat-input-0"]')
@@ -243,6 +265,25 @@ class ClientPage {
     async pressSearchFilter() {
         await this.searchField.click()
     }
+    async setNameFilterTemplate(template){
+        await this.filterTemplateField.setValue(template)
+    }
+    async openTemplateFilterToSave(){
+        await this.saveFilterTemplate.click()
+    }
+    async saveInsertedTemplate(){
+       await this.saveInsertedTemplateButton.click();
+    }
+    async moreInfoTemplate(){
+        await this.moreInfoFilter.click();
+    }
+    async deleteTemplate(){
+        await this.deleteTemplateIcon.click();
+    }
+    async pressYesToDelete(){
+        await this.yesToDeleteTemplate.click();
+    }
+
 
     async chooseJobFilter() {
         await this.jobFieldFilter.click()
