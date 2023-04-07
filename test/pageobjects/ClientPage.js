@@ -112,36 +112,15 @@ class ClientPage {
     }
 
 
-
-    // get selectors for filter functionalities
-    get dropFilterButton() {
-        return $('.actions button:nth-child(3)')
-    }
-    get saveFilterTemplate() {
-        return $('.actions button:nth-child(2)')
-    }
-    get moreInfoFilter(){
-        return $('div.header-category ul li:nth-child(3)')
+    //my unique autotest
+    get exportToCvForm() {
+        return $('.crm-page__pagination-block .mat-button')
     }
 
-    get saveInsertedTemplateButton(){
-        return $('[class="bold mat-button"]')
+    get exportToCvButton() {
+        return $('.mat-dialog-actions .mat-button-wrapper')
     }
 
-    get filterTemplateField(){
-        return $('[id="mat-input-1"]')
-    }
-
-    get deleteTemplateIcon(){
-        return $('mat-icon.material-icons:nth-child(2)')
-    }
-    get yesToDeleteTemplate(){
-        return $(`[class="mat-button modal-btn-ok"]`)
-    }
-
-    get searchField() {
-        return $('[id="mat-input-0"]')
-    }
 
     async openForm() {
         await $('button.clients-add-user-dialog').click();
@@ -258,48 +237,16 @@ class ClientPage {
         await this.optionsForReview.click()
     }
 
-    async deleteFilter() {
-        await this.dropFilterButton.click();
+
+    // My unique autoTest
+
+    async exportToCv() {
+      await this.exportToCvButton.click()
     }
 
-    async pressSearchFilter() {
-        await this.searchField.click()
+    async openExportToCvForm() {
+        await this.exportToCvForm.click();
     }
-    async setNameFilterTemplate(template){
-        await this.filterTemplateField.setValue(template)
-    }
-    async openTemplateFilterToSave(){
-        await this.saveFilterTemplate.click()
-    }
-    async saveInsertedTemplate(){
-       await this.saveInsertedTemplateButton.click();
-    }
-    async moreInfoTemplate(){
-        await this.moreInfoFilter.click();
-    }
-    async deleteTemplate(){
-        await this.deleteTemplateIcon.click();
-    }
-    async pressYesToDelete(){
-        await this.yesToDeleteTemplate.click();
-    }
-
-
-    async chooseJobFilter() {
-        await this.jobFieldFilter.click()
-        await this.jobOptionFilter.click();
-    }
-
-    async clickOnTotalCheck() {
-        await this.totalCheck.click()
-    }
-
-    async blackListFieldClick() {
-        await this.blackListField.click()
-        await this.blackListOption.click()
-    }
-
-
 }
 
 
